@@ -20,7 +20,7 @@ def get_time_seres_chart(df, metric, grain):
 def time_series_chart(df):
     with st.container(border=True):
         grain_options = ["Day", "Week", "Month", "Year"]
-        grain = st.select_slider("Time grain", grain_options)
+        grain = st.select_slider("Time grain", grain_options, key="w:ts_grain")
         chart_tabs = st.tabs(display_metrics)
         for idx, met in enumerate(display_metrics):
             with chart_tabs[idx]:

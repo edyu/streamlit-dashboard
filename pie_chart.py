@@ -15,7 +15,8 @@ def pie_chart(df):
     with st.container(border=True):
         split_dimension = st.selectbox(
             "Group by",
-            ["Age group", "Gender", "State", "Category", "Segment", "Product name"]
+            ["Age group", "Gender", "State", "Category", "Segment", "Product name"],
+            key="w:pie_split"
         )
         metric_tabs = st.tabs(pie_chart_display_metrics)
         for idx, met in enumerate(pie_chart_display_metrics):

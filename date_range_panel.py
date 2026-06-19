@@ -16,10 +16,14 @@ def get_compare_range(start, end, comparison):
     return (start - offset).date(), (end - offset).date()
 
 def date_range_panel():
-    start = st.date_input("Start date", value=THIRTY_DAYS_AGO)
-    end = st.date_input("End date", value=LATEST_DATE)
+    if 'w:start' not in st.session_state:
+        st.session_state['w:start'] = THIRTY_DAYS_AGO
+    if 'w:end' not in st.session_state:
+        st.session_state['w:end'] = LATEST_DATE
+    start = st.date_input("Start date", key="w:start")
+    end = st.date_input("End date", key="w:end")
     comparison = st.selectbox(
-        "Compare to", ["MoM", "QoQ", "YoY", "Previous period"]
+        "Compare to", ["MoM", "QoQ", "YoY", "Previous period"], key="w:compare"
     )
     compare_start, compare_end = get_compare_range(start, end, comparison)
     st.info(f"Comparing with:  \n{compare_start} - {compare_end}")
